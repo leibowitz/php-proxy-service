@@ -1,0 +1,14 @@
+{
+    "name": "leibowitz/php-proxy-service",
+    "require": {
+        "silex/silex": "~1.1",
+        "symfony/http-foundation": "~2.3",
+        "guzzle/guzzle": "~3.7"
+    },
+    "authors": [
+        {
+            "name": "Gianni Moschini",
+            "email": "gianni.moschini@hailocab.com"
+        }
+    ]
+}
