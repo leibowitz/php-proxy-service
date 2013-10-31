@@ -34,20 +34,33 @@ $app->register(new SilexMongo\MongoDbExtension(), array(
 
 $app->match('{url}', function($url, Request $request) use ($app) {
 
+    // Remove the proxy.dev
     $host = str_replace('.'.$app['domain'], '', $request->getHost());
+
+    // Look if we have a port
+    $parts = explode('.', $host);
+    // Extract host
+    $host = $parts[0];
+    if( count($parts) > 1 ) {
+        $port = (int)$parts[1];
+    } else {
+        $port = 80;
+    }
+
+    // replace dashes with dots
     $host = str_replace('-', '.', $host);
+    // replace double dots (which were double dashes) to a dash
     $host = str_replace('..', '-', $host);
 
     $url = http_build_url(
         $request->getSchemeAndHttpHost(),
         array(
+            'port' => $port,
             'host' => $host,
             'path' => $request->getPathInfo(),
             'query' => $request->getQueryString()
         )
     );
-
-    //$parts = explode('.', $host);
 
     $client = new Client($url, array(
         'request.options' => array(
