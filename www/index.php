@@ -11,6 +11,12 @@ $app = new Silex\Application();
 $app['debug'] = true;
 $app['domain'] = 'proxy.dev';
 
+$app['removeHeaders'] = array(
+        'Content-Length',
+        'Connection',
+        'Content-Encoding'
+    );
+
 
 class MyListener {
     function postConnect() {
@@ -56,6 +62,7 @@ $app->match('{url}', function($url, Request $request) use ($app) {
         $request->getSchemeAndHttpHost(),
         array(
             'port' => $port,
+            'scheme' => $port == 443 ? 'https' : 'http',
             'host' => $host,
             'path' => $request->getPathInfo(),
             'query' => $request->getQueryString()
@@ -98,8 +105,19 @@ $app->match('{url}', function($url, Request $request) use ($app) {
     $db = $app['mongodb']->selectCollection('proxyservice', 'log');
     $db->insert($document);
 
+    // Remove a few headers from the response like content-length
+    $headers = $proxyResponse->getHeaders()->toArray();
 
-    $response = new Response($proxyResponse->getBody());
+    foreach($app['removeHeaders'] as $field) {
+
+        if( !isset($headers[$field]) ) {
+            continue;
+        }
+
+        unset($headers[$field]);
+    }
+
+    $response = new Response($proxyResponse->getBody(), $proxyResponse->getStatusCode(), $headers);
 
     return $response;
 })->assert('url', '.*');
