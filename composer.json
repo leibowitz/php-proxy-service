@@ -4,7 +4,8 @@
         "silex/silex": "~1.1",
         "symfony/http-foundation": "~2.3",
         "guzzle/guzzle": "~3.7",
-        "mheap/silex-mongo": "dev-master"
+        "mheap/silex-mongo": "dev-master",
+        "phpunit/php-timer": "1.0.5"
     },
     "authors": [
         {

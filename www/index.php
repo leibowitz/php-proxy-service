@@ -84,7 +84,9 @@ $app->match('{url}', function($url, Request $request) use ($app) {
         $proxyRequest->setBody($request->getContent());
     }*/
 
+    PHP_Timer::start();
     $proxyResponse = $proxyRequest->send();
+    $time = PHP_Timer::stop();
 
     $document = array(
         'request' =>
@@ -94,6 +96,8 @@ $app->match('{url}', function($url, Request $request) use ($app) {
                 'headers' => $proxyRequest->getHeaders()->toArray(),
                 'host' => $proxyRequest->getHost(),
                 'path' => $proxyRequest->getPath().'?'.$proxyRequest->getQuery(true),
+                'time' => $time,
+                'date' => new DateTime(),
             ),
         'response' =>
             array(
