@@ -97,7 +97,7 @@ $app->match('{url}', function($url, Request $request) use ($app) {
                 'host' => $proxyRequest->getHost(),
                 'path' => $proxyRequest->getPath().'?'.$proxyRequest->getQuery(true),
                 'time' => $time,
-                'date' => new DateTime(),
+                'date' => new MongoDate(),
             ),
         'response' =>
             array(
