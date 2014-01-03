@@ -107,14 +107,6 @@ $app->match('{url}', function($url, Request $request) use ($app) {
 
     $path = $request->getPathInfo();
 
-    // Funny enough it's unclear how Guzzle supports x-www-form-urlencoded GET requests
-    // sending the content in the query string does the trick for now
-    if($request->getQueryString()) {
-        $query = $request->getQueryString();
-    } else if( $method == 'GET' && $request->headers->get('content-type') == 'application/x-www-form-urlencoded' ) {
-        $query = $request->getContent();
-    }
-
     $url = http_build_url(
         $request->getSchemeAndHttpHost(),
         array(
@@ -122,7 +114,7 @@ $app->match('{url}', function($url, Request $request) use ($app) {
             'scheme' => $port == 443 ? 'https' : 'http',
             'host' => $host,
             'path' => $request->getPathInfo(),
-            'query' => $query
+            'query' => $request->getQueryString()
         )
     );
 
