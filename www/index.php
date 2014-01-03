@@ -6,11 +6,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Guzzle\Http\Client;
 
+
 $app = new Silex\Application();
 
 $app['debug'] = true;
 $app['domain'] = 'proxy.dev';
-$app['domains'] = array('proxy.dev', 'mock.dev');
+$app['domains'] = array('proxy.dev', 'mocky.dev');
 
 $app['removeHeaders'] = array(
         'Content-Length',
@@ -83,7 +84,7 @@ $app->match('{url}', function($url, Request $request) use ($app) {
 
     // Remove the proxy.dev
     foreach($app['domains'] as $domain) {
-        if($domain == 'mock.dev' && strpos($host, $domain) !== false) {
+        if($domain == 'mocky.dev' && strpos($host, $domain) !== false) {
             $mock = true;
         }
 
