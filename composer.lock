@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "653f4bc3292aa828bce885160f00255b",
+    "hash": "80fc466d17637919cbd5c5042986d517",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -467,16 +467,16 @@
         },
         {
             "name": "guzzle/guzzle",
-            "version": "v3.7.4",
+            "version": "dev-send_body_for_get_requests",
             "source": {
                 "type": "git",
-                "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "b170b028c6bb5799640e46c8803015b0f9a45ed9"
+                "url": "https://github.com/leibowitz/guzzle.git",
+                "reference": "5cbba09f9f3905328bf956db59eb30f526cbb68f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/b170b028c6bb5799640e46c8803015b0f9a45ed9",
-                "reference": "b170b028c6bb5799640e46c8803015b0f9a45ed9",
+                "url": "https://api.github.com/repos/leibowitz/guzzle/zipball/5cbba09f9f3905328bf956db59eb30f526cbb68f",
+                "reference": "5cbba09f9f3905328bf956db59eb30f526cbb68f",
                 "shasum": ""
             },
             "require": {
@@ -514,22 +514,21 @@
                 "phpunit/phpunit": "3.7.*",
                 "psr/log": "1.0.*",
                 "symfony/class-loader": "*",
-                "zendframework/zend-cache": "2.0.*",
-                "zendframework/zend-log": "2.0.*"
+                "zendframework/zend-cache": "<2.3",
+                "zendframework/zend-log": "<2.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.7-dev"
+                    "dev-master": "3.8-dev"
                 }
             },
             "autoload": {
                 "psr-0": {
-                    "Guzzle\\Tests": "tests/",
-                    "Guzzle": "src/"
+                    "Guzzle": "src/",
+                    "Guzzle\\Tests": "tests/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -547,15 +546,18 @@
             "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
             "homepage": "http://guzzlephp.org/",
             "keywords": [
+                "HTTP client",
                 "client",
                 "curl",
                 "framework",
                 "http",
-                "http client",
                 "rest",
                 "web service"
             ],
-            "time": "2013-10-02 20:47:00"
+            "support": {
+                "source": "https://github.com/leibowitz/guzzle/tree/send_body_for_get_requests"
+            },
+            "time": "2014-01-03 17:50:53"
         },
         {
             "name": "mheap/silex-mongo",
@@ -1119,6 +1121,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "guzzle/guzzle": 20,
         "mheap/silex-mongo": 20
     },
     "platform": [

@@ -1,9 +1,15 @@
 {
+  "repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/leibowitz/guzzle.git"
+    }
+  ],
     "name": "leibowitz/php-proxy-service",
     "require": {
         "silex/silex": "~1.1",
         "symfony/http-foundation": "~2.3",
-        "guzzle/guzzle": "~3.7",
+        "guzzle/guzzle": "dev-send_body_for_get_requests",
         "mheap/silex-mongo": "dev-master",
         "phpunit/php-timer": "1.0.5"
     },
